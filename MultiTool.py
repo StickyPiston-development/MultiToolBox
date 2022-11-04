@@ -7,6 +7,49 @@ ToolKitVersion = "0.3"
 
 Tool = ""
 
+# CriteriaChecker
+def CriteriaChecker_check(Number):
+    output = Number >= 256 and Number % 34 == 4
+    print("Number meets the requirements: " + str(output) + "\n")
+
+    return output
+
+def CriteriaChecker_Find(Number):
+    solutionA = False
+    solutionB = False
+    a = inputNumber
+    b = inputNumber
+        
+    while not solutionA and not solutionB:
+        a += 1
+        b -= 1
+
+        solutionA = a >= 256 and a % 34 == 4
+        solutionB = b >= 256 and b % 34 == 4
+
+    if solutionA:
+        print("The nearest number that meets the criteria is: " + str(a) + "\n")
+        return solutionA
+    elif solutionB:
+        print("The nearest number that meets the criteria is: " + str(b) + "\n")
+        return solutionB
+    else:
+        print("ERROR, number not found")
+        return 0
+
+# NumberArray
+def NumberArray(Number):
+    counter = Number
+    Numbers = []
+
+    while True:
+        
+        Numbers.append(counter)
+        counter += 2
+        if len(Numbers) >= inputNumber:
+            break
+    print("The resulting Array is: " + str(Numbers) + "\n")
+
 while True:
 
     print("""\n\n
@@ -45,8 +88,7 @@ while True:
                 break
             inputNumber = int(inputNumber)
         
-            output = inputNumber >= 256 and inputNumber % 34 == 4
-            print("Number meets the requirements: " + str(output) + "\n")
+            CriteriaChecker_check(inputNumber)
 
     elif Tool == 2:
         print("""\n\n
@@ -67,31 +109,10 @@ while True:
     
             inputNumber = int(inputNumber)
 
-            output = inputNumber >= 256 and inputNumber % 34 == 4
-            print("Number meets the requirements: " + str(output) + "\n")
+            if not (CriteriaChecker_check(inputNumber)):
+                CriteriaChecker_Find(inputNumber)
 
-            if not output:
-                print("Searching for nearest number that meets the criteria...")
-
-                solutionA = False
-                solutionB = False
-                a = inputNumber
-                b = inputNumber
-        
-                while not solutionA and not solutionB:
-                    a += 1
-                    b -= 1
-
-                    solutionA = a >= 256 and a % 34 == 4
-                    solutionB = b >= 256 and b % 34 == 4
-
-                if solutionA:
-                    print("The nearest number that meets the criteria is: " + str(a) + "\n")
-                else:
-                    print("The nearest number that meets the criteria is: " + str(b) + "\n")
-            
-            print("\n")
-
+            print()
     elif Tool == 3:
         print("""\n\n
   _   _                 _                                                        ___  __ 
@@ -109,27 +130,10 @@ while True:
             inputNumber = input("Enter a number: ")
             if not inputNumber.isnumeric():
                 break
-
             inputNumber = int(inputNumber)
-            counter = inputNumber
-            Numbers = []
-
-            #print("Getting the numbers...\n")
-
-            while True:
-                if inputNumber <= 0:
-                    print("Error: It is not possible to have a array starting at " + str(inputNumber) + " containing " + str(inputNumber) + ".\nPlease enter another number.")
-                    break
-                Numbers.append(counter)
-                counter += 2
-                # show the stuff between
-                # print("\r" + str(len(Numbers)) + " numbers: " + str(Numbers))
-                if len(Numbers) >= inputNumber:
-                    break
-            print("The resulting Array is: " + str(Numbers) + "\n")
-
-
-
-
+            if inputNumber >= 1:
+                NumberArray(inputNumber)
+            else:
+                print("Error: It is not possible to have a array starting at " + str(inputNumber) + " containing " + str(inputNumber) + ".\nPlease enter another number.\n")
 
     print("Quitting this tool...\n\n\n")
