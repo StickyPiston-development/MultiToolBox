@@ -7,7 +7,8 @@ def Tools():
     Tools = [
         ["CriteriaChecker", 0.1], 
         ["CriteriaChecker", 0.2],
-        ["NumberArray", 0.1]]
+        ["NumberArray", 0.1],
+        ["SequenceChecker", 0.1]]
 
     # Print tool + version
     for i, tool in enumerate(Tools):
@@ -43,6 +44,7 @@ def CriteriaChecker_Find(Number):
         print("The nearest number that meets the criteria is: " + str(b) + "\n")
         return solutionB
     else:
+        # This should not happen
         print("\033[91mERROR, number not found\033[0m")
         return 0
 
@@ -58,6 +60,12 @@ def NumberArray(Number):
         if len(Numbers) >= inputNumber:
             break
     print("The resulting Array is: " + str(Numbers) + "\n")
+
+# SequenceChecker
+def Sequence_Check(InputArray):
+    output = (InputArray[len(InputArray)-1]).find(InputArray[len(InputArray)-2]) != -1
+    print ("The last value contains the one to last value: " + str(output) + "\n")
+    return output
 
 while True:
 
@@ -145,5 +153,28 @@ Please select a tool or EXIT to exit.
                 NumberArray(inputNumber)
             else:
                 print("\033[91mError: It is not possible to have a array starting at " + str(inputNumber) + " containing " + str(inputNumber) + ".\033[0m\nPlease enter another number.\n")
+    elif Tool == 4:
+        print("""\n\n
+   _____                                       _____ _               _                         ___  __ 
+  / ____|                                     / ____| |             | |                       / _ \/_ |
+ | (___   ___  __ _ _   _  ___ _ __   ___ ___| |    | |__   ___  ___| | _____ _ __   __   __ | | | || |
+  \___ \ / _ \/ _` | | | |/ _ \ '_ \ / __/ _ \ |    | '_ \ / _ \/ __| |/ / _ \ '__|  \ \ / / | | | || |
+  ____) |  __/ (_| | |_| |  __/ | | | (_|  __/ |____| | | |  __/ (__|   <  __/ |      \ V /  | |_| || |
+ |_____/ \___|\__, |\__,_|\___|_| |_|\___\___|\_____|_| |_|\___|\___|_|\_\___|_|       \_(_)  \___(_)_|
+                 | |                                                                                   
+                 |_|                                                                                   
+""")    
+        print("Enter an array to check if the last value contains the one to last value, Or EXIT to quit\n")
+        while True:
+            InputArray = input("Enter a array: ")
+            if InputArray.lower() == "exit":
+                break
+            InputArray = InputArray.replace("[", "").replace("]", "").replace("'", "").split(', ')
+            if len(InputArray) <= 1:
+                print("\033[91mERROR, The submitted array is invalid/too short.\033[0m\n")
+            else:
+                Sequence_Check(InputArray)
 
+    else:
+        print("\033[91mERROR, Tool not found\033[0m")
     print("Quitting this tool...\n\n\n")
