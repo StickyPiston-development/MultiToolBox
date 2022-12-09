@@ -8,7 +8,8 @@ def Tools():
         ["CriteriaChecker", 0.1], 
         ["CriteriaChecker", 0.2],
         ["NumberArray", 0.1],
-        ["SequenceChecker", 0.1]]
+        ["SequenceChecker", 0.1],
+        ["SameDistanceArray", 0.1]]
 
     # Print tool + version
     for i, tool in enumerate(Tools):
@@ -67,16 +68,25 @@ def Sequence_Check(InputArray):
     print ("The last value contains the one to last value: " + str(output) + "\n")
     return output
 
+# SameDistanceChecker
+def SameDistance_Check(numbers):
+    difference = abs(numbers[0]-numbers[1])
+
+    for i in range(len(numbers)):
+        if not abs(numbers[i]-numbers[i-1]) == difference and not i == 0 or not isinstance(i, int):
+            return[False, i + 1, numbers[i], "Number doesn't meet all criteria"]
+    return[True, None, None, "Number meets all criteria"]
+
 while True:
 
     print("""\n\n
-  __  __       _ _   _ _______          _              ___   ____  
- |  \/  |     | | | (_)__   __|        | |            / _ \ |___ \ 
- | \  / |_   _| | |_ _   | | ___   ___ | |   __   __ | | | |  __) |
- | |\/| | | | | | __| |  | |/ _ \ / _ \| |   \ \ / / | | | | |__ < 
- | |  | | |_| | | |_| |  | | (_) | (_) | |    \ V /  | |_| | ___) |
- |_|  |_|\__,_|_|\__|_|  |_|\___/ \___/|_|     \_(_)  \___(_)____/ 
-                                                                   
+  __  __       _ _   _ _______          _   __      _____  _  _  __ 
+ |  \/  |     | | | (_)__   __|        | |  \ \    / / _ \| || |/_ |
+ | \  / |_   _| | |_ _   | | ___   ___ | |   \ \  / / | | | || |_| |
+ | |\/| | | | | | __| |  | |/ _ \ / _ \| |    \ \/ /| | | |__   _| |
+ | |  | | |_| | | |_| |  | | (_) | (_) | |     \  / | |_| |  | |_| |
+ |_|  |_|\__,_|_|\__|_|  |_|\___/ \___/|_|      \/   \___(_) |_(_)_|
+                                                                    
 Please select a tool or EXIT to exit.
 """)
     Tools()
@@ -174,7 +184,28 @@ Please select a tool or EXIT to exit.
                 print("\033[91mERROR, The submitted array is invalid/too short.\033[0m\n")
             else:
                 Sequence_Check(InputArray)
+    elif Tool == 5:
+        print("""\n\n
+   _____                      _____  _     _                        _____ _               _             
+  / ____|                    |  __ \(_)   | |                      / ____| |             | |            
+ | (___   __ _ _ __ ___   ___| |  | |_ ___| |_ __ _ _ __   ___ ___| |    | |__   ___  ___| | _____ _ __ 
+  \___ \ / _` | '_ ` _ \ / _ \ |  | | / __| __/ _` | '_ \ / __/ _ \ |    | '_ \ / _ \/ __| |/ / _ \ '__|
+  ____) | (_| | | | | | |  __/ |__| | \__ \ || (_| | | | | (_|  __/ |____| | | |  __/ (__|   <  __/ |   
+ |_____/ \__,_|_| |_| |_|\___|_____/|_|___/\__\__,_|_| |_|\___\___|\_____|_| |_|\___|\___|_|\_\___|_|                                                                                                                                                       
+""")    
+        print("Enter an array to check if the list consists of 100 numbers the same distance apart or exit to exit\n")
+        while True:
+            InputArray = input("Enter a array: ")
+            if InputArray.lower() == "exit":
+                break
+            InputArray = InputArray.replace("[", "").replace("]", "").replace("'", "").split(', ')
+            InputArray = [int(i) for i in InputArray]
 
+            if len(InputArray) != 100:
+                print("\033[91mERROR, The submitted array is invalid/too short/too long (100 numbers).\033[0m\n")
+            else:
+                output = SameDistance_Check(InputArray)
+                print(str(output[3]) + ", " + str(output[0]) + "\n")
     else:
         print("\033[91mERROR, Tool not found\033[0m")
     print("Quitting this tool...\n\n\n")
