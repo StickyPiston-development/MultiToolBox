@@ -1,4 +1,4 @@
-ToolKitVersion = "0.3"
+ToolKitVersion = "0.4.1"
 
 Tool = ""
 
@@ -9,7 +9,8 @@ def Tools():
         ["CriteriaChecker", 0.2],
         ["NumberArray", 0.1],
         ["SequenceChecker", 0.1],
-        ["SameDistanceArray", 0.1]]
+        ["SameDistanceArray", 0.1],
+        ["CloseBrackets", 0.1]]
 
     # Print tool + version
     for i, tool in enumerate(Tools):
@@ -76,6 +77,17 @@ def SameDistance_Check(numbers):
         if not abs(numbers[i]-numbers[i-1]) == difference and not i == 0 or not isinstance(i, int):
             return[False, i + 1, numbers[i], "Number doesn't meet all criteria"]
     return[True, None, None, "Number meets all criteria"]
+
+# CloseBrackets
+def closeBrackets(inputString):
+    output = []
+    substring = ""
+    for s in inputString.replace(' ', ''):
+        substring += s
+        if substring.count("(") == substring.count(")"):
+            output.append(substring)
+            substring = ""
+    return output
 
 while True:
 
@@ -206,6 +218,22 @@ Please select a tool or EXIT to exit.
             else:
                 output = SameDistance_Check(InputArray)
                 print(str(output[3]) + ", " + str(output[0]) + "\n")
+    elif Tool == 6:
+        print("""
+   _____ _                ____                 _        _        __      __   ___  __ 
+  / ____| |              |  _ \               | |      | |       \ \    / /  / _ \/_ |
+ | |    | | ___  ___  ___| |_) |_ __ __ _  ___| | _____| |_ ___   \ \  / /  | | | || |
+ | |    | |/ _ \/ __|/ _ \  _ <| '__/ _` |/ __| |/ / _ \ __/ __|   \ \/ /   | | | || |
+ | |____| | (_) \__ \  __/ |_) | | | (_| | (__|   <  __/ |_\__ \    \  /    | |_| || |
+  \_____|_|\___/|___/\___|____/|_|  \__,_|\___|_|\_\___|\__|___/     \(_)    \___(_)_|
+        """)
+        print("Enter a string with brackets to get the brackets closed back. Enter exit to exit.\n")
+        while True:
+            inputString = input("Enter a string: ")
+            if inputString.lower() == "exit":
+                break
+            print(str(closeBrackets(inputString)) + "\n")
+
     else:
         print("\033[91mERROR, Tool not found\033[0m")
     print("Quitting this tool...\n\n\n")
