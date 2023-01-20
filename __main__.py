@@ -1,6 +1,4 @@
-import tools
-
-tools.startswith.progress_bar()
+import tools, modules
 
 def read_tools():
     with open('tools.txt', 'r') as toolFile:
@@ -10,7 +8,7 @@ def read_tools():
 def menu():
     toolList = read_tools().split('\n')
 
-    print(ascii("multitoolbox"))
+    print(modules.logo.ascii("multitoolbox"))
     print("+-----------------------------------------+\n| Number | Tool name            | Version |\n+-----------------------------------------+")
     for i in toolList:
         iSplit = i.split('v.')
@@ -18,7 +16,7 @@ def menu():
     input("+-----------------------------------------+\n\nEnter a tool number:")
 
 
-
+print(tools.startswith.get([(' ka', ('kat ', ' auto', 'kalf', 'midden', ' k av iaar'))]))
 
 if __name__ == "__main__":
     menu()
