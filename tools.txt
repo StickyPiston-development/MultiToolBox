@@ -1,6 +1,7 @@
-CriteriaChecker     v.0.1
-CriteriaChecker     v.0.2
-NumberArray         v.0.1
-SequenceChecker     v.0.1
-SameDistanceArray   v.0.1
-CloseBrackets       v.0.1
+CriteriaChecker     |0.1|int|CRITERIACHECK
+CriteriaChecker     |0.2|int|CRITERIAFIND
+NumberArray         |0.1|int|NUMBERARRAY
+SequenceChecker     |0.1|arr|SEQUENCECHECK
+SameDistanceArray   |0.1|arr|SAMEDISTANCE
+CloseBrackets       |0.1|str|CLOSEBRACKETS
+Startswith          |0.1|arr|STARTSWITH
