@@ -5,3 +5,6 @@ SequenceChecker     |0.1|arr|SEQUENCECHECK
 SameDistanceArray   |0.1|arr|SAMEDISTANCE
 CloseBrackets       |0.1|str|CLOSEBRACKETS
 Startswith          |0.1|arr|STARTSWITH
+longestwords        |0.1|str|LONGESTWORDS
+MultiplyNumbers     |0.1|int|MULTIPLYNUMBERS
+GradeConverter      |0.1|flo|CONVERTGRADE

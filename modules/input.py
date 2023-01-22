@@ -11,6 +11,18 @@ def integer(toolNumber):
             print(modules.tool.run(toolNumber, int(InputNumber)))
         InputNumber = input("\n")
 
+def flo(toolNumber):
+    InputNumber = input("Enter a number or enter exit to exit:\n\n")
+    while True:
+        if InputNumber == 'exit':
+            return
+        try:
+            InputNumber = float(InputNumber)
+            print(modules.tool.run(toolNumber, InputNumber))
+        except Exception as E:
+            print("Please enter a valid number.\n" + str(E))
+        InputNumber = input("\n")
+
 def string(toolNumber):
     InputString = input("Enter a string or enter exit to exit:\n\n")
     while True:

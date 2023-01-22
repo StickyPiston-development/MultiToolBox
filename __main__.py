@@ -13,7 +13,7 @@ def menu():
     print("+-----------------------------------------+\n| Number | Tool name            | Version |\n+-----------------------------------------+")
     for i in toolList:
         iSplit = i.split('|')
-        print(f'| {str(toolList.index(i) + 1)}      | {iSplit[0]} | {iSplit[1]}     |')
+        print(f'| {str(toolList.index(i) + 1)}\t | {iSplit[0]} | {iSplit[1]}     |')
     toolInput(input("+-----------------------------------------+\n\nEnter a tool number or exit to exit: "), toolList)
 
 def toolInput(toolNumber, toolList):
@@ -36,6 +36,8 @@ def toolInput(toolNumber, toolList):
     match toolList[toolNumber-1].split('|')[2]:
         case "int":
             modules.input.integer(toolNumber)
+        case "flo":
+            modules.input.flo(toolNumber)
         case "str":
             modules.input.string(toolNumber)
         case "arr":

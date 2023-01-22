@@ -57,4 +57,12 @@ def run(toolNumber, input):
         
         case "startswith":
             return modules.tools.startswith.get(input)
-    
+
+        case "longestwords":
+            return modules.tools.longestwords.get(input)
+
+        case "multiplynumbers":
+            return modules.tools.multiplynumbers.odd(input)
+
+        case "convertgrade":
+            return modules.tools.grades.letter(input)

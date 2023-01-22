@@ -4,3 +4,6 @@ import modules.tools.sequencechecker as sequencechecker
 import modules.tools.samedistancechecker as samedistancechecker
 import modules.tools.brackets as brackets
 import modules.tools.startswith as startswith
+import modules.tools.longestwords as longestwords
+import modules.tools.multiplynumbers as multiplynumbers
+import modules.tools.grades as grades
